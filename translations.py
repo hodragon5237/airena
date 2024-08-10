@@ -1,0 +1,47 @@
+translations = {
+    'en': {
+        'title': 'AIrena',
+        'subtitle': 'AI-Powered Programming Arena',
+        'welcome_message': 'Welcome to AIrena, where AI meets competitive programming!',
+        'description': 'Test your skills in Python, Java, JavaScript, and more against our advanced AI system.',
+        'pronunciation': 'AIrena, pronounced "/aɪ/ riː.nə/"',
+        'concept': 'combines "AI" and "arena" to create a unique battleground for programmers of all levels.',
+        'start_button': 'Start AIrena!',
+        'logout': 'Logout',
+        'login': 'Login',
+        'python': 'Python',
+        'java': 'Java',
+        'javascript': 'JavaScript',
+        'level_test': 'Level Test',
+        'stage': 'Stage',
+        'study_room': 'Study Room',
+        'profile': 'Profile',
+        'leaderboard': 'Leaderboard',
+        'welcome': 'Welcome to AIrena!',
+        'start_button': 'Start AIrena!',
+    },
+    'ko': {
+        'title': 'AIrena',
+        'subtitle': 'AI 기반 프로그래밍 Gym',
+        'welcome_message': 'AI와 경쟁적 프로그래밍이 만나는 AIrena에 오신 것을 환영합니다!',
+        'description': '우리의 고급 AI 시스템과 Python, Java, JavaScript 등의 기술을 테스트해보세요.',
+        'pronunciation': 'AIrena는 "/아이리나/"로 발음합니다',
+        'concept': '"AI"와 "arena"를 결합하여 모든 수준의 프로그래머를 위한 독특한 경기장을 만들었습니다.',
+        'start_button': 'AIrena 시작하기!',
+        'logout': '로그아웃',
+        'login': '로그인',
+        'python': '파이썬',
+        'java': '자바',
+        'javascript': '자바스크립트',
+        'level_test': '레벨 테스트',
+        'stage': '스테이지',
+        'study_room': '학습실',
+        'profile': '프로필',
+        'leaderboard': '리더보드',
+        'welcome': 'AIrena에 오신 것을 환영합니다!',
+        'start_button': 'AIrena 시작하기!',
+    }
+}
+
+def get_translation(key, language):
+    return translations.get(language, {}).get(key, key)

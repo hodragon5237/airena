@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="copyright" content="Copyright © 2024 AIrena. All rights reserved.">
+    <meta name="description" content="AIrena - AI-Powered Programming Arena for learning and testing programming skills">
+    <title>AIrena - AI-Powered Programming Arena</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false,
+            includedLanguages: 'en,ko,ja,zh-CN,es,fr,de',
+            multilanguagePage: true,
+            gaTrack: true,
+            format: 'html'
+          }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body>
+        <div class="hero" role="banner" aria-label="Introducing AIrena.">
+            <div class="hero__title" role="heading" aria-level="Service Title">AIrena</div>
+            <div class="hero__subtitle" role="heading" aria-level="Subtitle">AI-Powered Programming Playgrounds</div>
+            <div class="language-selector">
+                <div id="google_translate_element"></div>
+            </div>
+            <div class="hero__description" role="region" aria-label="Introducing AIrena.">
+                <p>Welcome to AIrena, where AI meets competitive programming!</p>
+                <p>Test your skills in Python, Java, JavaScript, and more against our advanced AI system.</p>
+                <p>AIrena, pronounced "/aɪ/ riː.nə/"</p>
+                <p>combines "AI" and "arena" to create a unique battleground for programmers of all levels.</p>
+            </div>
+            <div class="hero__terminal">
+                <pre>
+                    <code class="language-python">
+    # Are you ready to challenge the AI?
+    def start_challenge():
+        print("Welcome to AIrena!")
+        skill_level = ai.assess_skills()
+        challenges = ai.generate_challenges(skill_level)
+        
+        for challenge in challenges:
+            user_solution = get_user_input()
+            result = ai.evaluate(user_solution, challenge)
+            
+            if result.is_correct:
+                print("Great job! Moving to the next challenge.")
+            else:
+                print("Almost there. Let's try again!")
+        
+        final_score = ai.calculate_score()
+        print(f"Your final score: {final_score}")
+
+    # Press Enter to begin your journey in AIrena
+    start_challenge()
+                    </code>
+                </pre>
+            </div>
+            <!-- {% if session.get('name') %}
+                <div class="user-info">
+                    <p>환영합니다, {{ session.get('name') }}님!</p>
+                    <p>이메일: {{ session.get('email') }}</p>
+                </div>
+            {% endif %} -->
+            <div class="buttons">
+                {% if logged_in %}
+                    <a href="{{ url_for('main.introduction') }}" class="hero__button">Start AIrena!</a>
+                    <a href="{{ url_for('main.logout_route') }}" class="hero__button">Logout</a>
+                    <a id="googleLoginBtn"></a>
+                {% else %}
+                    <a href="{{ url_for('main.login_route') }}" class="hero__button" id="googleLoginBtn">Login</a>
+                {% endif %}
+            </div>
+        </div>
+        <!-- <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <div id="g_id_onload"
+            data-client_id="{{ CLIENT_ID }}"
+            data-login_uri="{{ url_for('main.callback_route', _external=True) }}"
+            data-auto_prompt="false">
+        </div>
+        <div class="g_id_signin"
+            data-type="standard"
+            data-size="large"
+            data-theme="outline"
+            data-text="sign_in_with"
+            data-shape="rectangular"
+            data-logo_alignment="left">
+        </div> -->
+        <input type="hidden" id="recaptchaResponse" name="g-recaptcha-response">
+        <script src="https://www.google.com/recaptcha/api.js?render={{ RECAPTCHA_SITE_KEY }}"></script>
+        <script>
+            document.getElementById('googleLoginBtn').addEventListener('click', function(event) {
+                event.preventDefault();
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('{{ RECAPTCHA_SITE_KEY }}', {action: 'login'}).then(function(token) {
+                        document.getElementById('recaptchaResponse').value = token;
+                        // 로그인 폼 제출
+                        const form = document.createElement('form');
+                        form.method = 'POST';
+                        form.action = '/login'; // 로그인 경로
+                        form.appendChild(document.getElementById('recaptchaResponse'));
+                        document.body.appendChild(form);
+                        form.submit();
+                    });
+                });
+            });
+        </script>
+</body>
+<footer class="footer">
+    <p>&copy; 2024 AIrena. All rights reserved. Developed by HoDragon</p>
+</footer>
+</html>

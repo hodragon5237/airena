@@ -1,0 +1,14 @@
+google-generativeai
+pycodestyle
+python-dotenv
+Flask-Session
+firebase-admin
+flask-login
+google-auth
+google-auth-oauthlib
+google-cloud-translate
+bleach
+flask
+flask-cors
+flask_talisman
+gunicorn

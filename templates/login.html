@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIrena - Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Welcome to AIrena</h1>
+        <div class="login-options">
+            <a href="#" class="google-btn" id="googleLoginBtn">
+                <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google logo" class="google-logo">
+                Continue with Google
+            </a>
+        </div>
+        <div id="errorMessage" class="error-message"></div>
+    </div>
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+    <input type="hidden" id="recaptchaResponse" name="g-recaptcha-response">
+    <script src="https://www.google.com/recaptcha/api.js?render={{ RECAPTCHA_SITE_KEY }}"></script>
+    <script>
+        document.getElementById('googleLoginBtn').addEventListener('click', function(event) {
+            event.preventDefault();
+            grecaptcha.ready(function() {
+                grecaptcha.execute('{{ RECAPTCHA_SITE_KEY }}', {action: 'login'}).then(function(token) {
+                    document.getElementById('recaptchaResponse').value = token;
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = '/login'; // 로그인 경로
+                    form.appendChild(document.getElementById('recaptchaResponse'));
+                    document.body.appendChild(form);
+                    form.submit(); // 폼 제출
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /static/
+Disallow: /templates/
+Disallow: /auth/
+Disallow: /api/
+Allow: /

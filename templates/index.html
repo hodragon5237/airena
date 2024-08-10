@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="{{ language }}" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="copyright" content="Copyright © 2024 AIrena. All rights reserved.">
+    <meta name="description" content="AIrena - AI-Powered Programming Arena for learning and testing programming skills">
+    <title>AIrena</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false,
+            includedLanguages: 'en,ko,ja,zh-CN,es,fr,de',
+            multilanguagePage: true,
+            gaTrack: true,
+            format: 'html'
+          }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body>
+    <a id="googleLoginBtn"></a>
+    <button id="hamburger-button" class="hamburger-btn" aria-label="You can view the navigation menu even in a mobile environment.">☰</button>
+
+    <div id="subject-select" class="subject-select" aria-label="You can choose any programming language or domain you can learn at AIrena.">
+        <h2 class="service-title">AIrena - AI-Powered Programming Playgrounds</h2>
+        <div id="subject-title" role="menuitem">Subject</div>
+        <div class="language-selector">
+            <div id="google_translate_element" aria-label="You can choose the language that is comfortable for you."></div>
+        </div>
+        <label>
+            <input type="radio" name="subject" value="Python" checked>
+            <span>Python</span>
+        </label>
+        <label>
+            <input type="radio" name="subject" value="Java">
+            <span>Java(Coming Soon)</span>
+        </label>
+        <label>
+            <input type="radio" name="subject" value="JavaScript">
+            <span>JavaScript(Coming Soon)</span>
+        </label>
+        <label>
+            <input type="radio" name="subject" value="Architecture">
+            <span>Architecture(Coming Soon)</span>
+        </label>
+        <label>
+            <input type="radio" name="subject" value="Data Science">
+            <span>Data Science(Coming Soon)</span>
+        </label>
+        <label>
+            <input type="radio" name="subject" value="Computer Vision">
+            <span>Computer Vision(Coming Soon)</span>
+        </label>
+        <label>
+            <input type="radio" name="subject" value="Text Mining">
+            <span>Text Mining(Coming Soon)</span>
+        </label>
+    </div>
+    <div class="container">
+        <div class="messages">
+            <div class="message-container">
+                <div class="avatar">
+                    <p>C</p>
+                </div>
+                <div class="name2">
+                    <p>Chat AIrena</p>
+                </div>
+            </div>
+            <ul class="people">
+                <li class="person active" data-chat="intro">
+                    <span class="title">Introduction</span><br>
+                    <span class="preview">Welcome to AIrena...</span>
+                </li>
+                <li class="person" data-chat="profile">
+                    <span class="title">Profile</span><br>
+                    <span class="preview">View your profile...</span>
+                </li>
+                <li class="person" data-chat="level_test">
+                    <span class="title">Level Test</span><br>
+                    <span class="preview">Start your assessment...</span>
+                </li>
+                <li class="person" data-chat="study_room">
+                    <span class="title">Study Room</span><br>
+                    <span class="preview">Learn with AI tutor...</span>
+                </li>
+                <li class="person" data-chat="stage">
+                    <span class="title">Learning Stage</span><br>
+                    <span class="preview">Start Learning...</span>
+                </li>
+                <li class="person" data-chat="leaderboard">
+                    <span class="title">Weekly Competition</span><br>
+                    <span class="preview">View the leaderboard...</span>
+                </li>
+            </ul>
+        </div>
+        <div class="chatbox">
+            <div class="top-bar">
+                <div class="avatar"><p>A</p></div>
+                <div class="name">AIrena</div>
+                <div class="icons">
+                    <button id="homeButton" class="nav-btn" aria-label="Go to Home.">Home</button>
+                    <button id="logoutButton" class="nav-btn" aria-label="Log out.">Logout</button>
+                    <button id="toggle-dark-mode" class="nav-btn" aria-label="Change to dark mode.">Dark Mode</button>
+                    <div class="sustainability-info">
+                        <h2>Environmental Sustainability</h2>
+                        <p>AIrena is committed to environmental sustainability. By using dark mode, you save energy, and our servers run on renewable energy.</p>
+                    </div>
+                    <i class="fas fa-info-circle"></i>
+                </div>
+            </div>
+            <div class="middle">
+                <div class="load" id="leaderboard-loading">
+                    <hr/><hr/><hr/><hr/>
+                </div>
+                <div class="chat active-chat" data-chat="intro">
+                    <!-- 여기에 인트로 채팅 내용 추가 -->
+                    <div id="intro-content"></div>
+                </div>
+                <div class="chat" data-chat="level_test">
+                    <div id="problem-container"></div>
+                </div>
+                <div class="chat" data-chat="result">
+                    <div id="result-container"></div>
+                </div>
+                <div class="chat" data-chat="profile">
+                    <!-- 프로필 내용이 여기에 로드됩니다 -->
+                </div>
+                <div class="chat" data-chat="stage">
+                    <div id="stage-problem-container"></div>
+                </div>
+                <div class="chat" data-chat="study_room">
+                    <div id="study-room-container"></div>
+                </div>
+                <div class="chat" data-chat="leaderboard">
+                    <div id="leaderboard-container"></div>
+                </div>
+            </div>
+            <div class="loading-overlay">
+                <div class="loading-animation">
+                    <div class="circ">
+                        <div class="load">Loading . . . </div>
+                        <div class="hands"></div>
+                        <div class="body"></div>
+                        <div class="head">
+                            <div class="eye"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-bar">
+                <div class="write">
+                    <input type="text" id="user-input" placeholder="Type a message..." aria-label="Enter the answer or message.">
+                    <div class="write-link send" id="submit-answer">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <input type="hidden" id="recaptchaResponse" name="g-recaptcha-response">
+    <script src="https://www.google.com/recaptcha/api.js?render={{ RECAPTCHA_SITE_KEY }}"></script>
+    <script>
+        document.getElementById('googleLoginBtn').addEventListener('click', function(event) {
+            event.preventDefault();
+            grecaptcha.ready(function() {
+                grecaptcha.execute('{{ RECAPTCHA_SITE_KEY }}', {action: 'login'}).then(function(token) {
+                    document.getElementById('recaptchaResponse').value = token;
+                    // 로그인 폼 제출
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = '/login'; // 로그인 경로
+                    form.appendChild(document.getElementById('recaptchaResponse'));
+                    document.body.appendChild(form);
+                    form.submit();
+                });
+            });
+        });
+    </script>
+</body>
+<footer class="footer">
+    <p>&copy; 2024 AIrena. All rights reserved. Developed by HoDragon</p>
+</footer>
+</html>
